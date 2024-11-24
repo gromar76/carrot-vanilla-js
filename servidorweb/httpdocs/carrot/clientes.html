@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informacion Clientes</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+
+  <body>
+    <div id="menu"></div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="bienvenido">Clientes</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="campoBusqueda">Buscar</label>
+          <input type="text" id="campoBusqueda" />
+        </div>
+      </div>
+
+      <button type="button" id="boton-agregar" class="btn btn-primary">
+        Nuevo
+      </button>
+
+      <div class="row">
+        <div class="col">
+          <div id="clientes" class="clientes"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFACTOR DIMENSIONES DE MODAL CLIENTE  -->
+    <div
+      class="modal fade"
+      id="modal-cliente"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="titulo-modal">Cliente</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="contenedor-codigo" class="mb-3">
+              <label for="id" class="form-label">ID</label>
+              <input type="text" class="form-control" id="id" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="apellido" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="whatsapp" class="form-label">Whats App</label>
+              <input type="text" class="form-control" id="whatsapp" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="dni" class="form-label">Dni</label>
+              <input type="text" class="form-control" id="dni" disabled />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" disabled />
+            </div>
+
+            <div class="mb-3">
+              <label for="domicilio" class="form-label">Domicilio</label>
+              <input type="text" class="form-control" id="domicilio" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="cpostal" class="form-label">Cpostal</label>
+              <input type="text" class="form-control" id="cpostal" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="pais" class="form-label">Pais</label>
+              <select class="form-select" id="pais" disabled></select>
+            </div>
+
+            <div class="mb-3">
+              <label for="provincia" class="form-label">Provincia</label>
+              <select class="form-select" id="provincia" disabled></select>
+            </div>
+            <div class="mb-3">
+              <label for="localidad" class="form-label">Localidad</label>
+              <select class="form-select" id="localidad" disabled></select>
+            </div>
+            <button
+              id="agregarLocalidad"
+              type="button"
+              class="btn btn-secondary"
+              disabled
+            >
+              + ( Agregar Localidad)
+            </button>
+
+            <div class="mb-3">
+              <label for="observaciones" class="form-label"
+                >Observaciones</label
+              >
+              <textarea
+                class="form-control"
+                id="observaciones"
+                rows="5"
+                disabled
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="editar" type="button" class="btn btn-primary">
+              Editar
+            </button>
+            <button id="cerrar-modal" type="button" class="btn btn-secondary">
+              Cerrar
+            </button>
+            <button id="grabar-cambios" type="button" class="btn btn-success">
+              Grabar Cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN Modal CLIENTE -->
+
+    <!-- REFACTOR DIMENSIONES DE MODAL LOCALIDAD  -->
+    <div
+      class="modal fade"
+      id="modal-localidad"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="titulo-modal">Localidad</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="nombre-localidad" class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre-localidad"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="cerrar-modal-localidad"
+              type="button"
+              class="btn btn-secondary"
+            >
+              Cerrar
+            </button>
+            <button
+              id="grabar-cambios-localidad"
+              type="button"
+              class="btn btn-success"
+            >
+              Grabar Localidad
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN Modal LOCALIDAD -->
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"
+  ></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="js/menu.js"></script>
+  <script src="js/config.js"></script>
+  <script src="servicios/clientes.js"></script>
+  <script src="js/clientes.js"></script>
+  <script src="../compartido/tabla.js"></script>
+  <script src="../compartido/funcionesFecha.js"></script>
+  <script src="../compartido/funcionesVarias.js"></script>
+</html>

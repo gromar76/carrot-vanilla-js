@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informacion Productos</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="css/productos.css" />
+  </head>
+
+  <body>
+    <div id="menu"></div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="bienvenido">Productos</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="campoBusqueda">Buscar</label>
+          <input type="text" id="campoBusqueda" />
+        </div>
+      </div>
+
+      <button type="button" id="boton-agregar" class="btn btn-primary">
+        Nuevo
+      </button>
+
+      <div class="row">
+        <div class="col">
+          <div id="productos" class="productos"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal PRODUCTO -->
+    <div
+      class="modal fade"
+      id="modal-producto"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="titulo-modal">Producto</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="contenedor-codigo" class="mb-3">
+              <label for="id" class="form-label">Codigo</label>
+              <input type="text" class="form-control" id="id" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="costo" class="form-label">Costo</label>
+              <input type="number" class="form-control" id="costo" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio</label>
+              <input type="number" class="form-control" id="precio" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="categoria" class="form-label">Categoria</label>
+              <select class="form-select" id="categoria" disabled></select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="editar" type="button" class="btn btn-primary">
+              Editar
+            </button>
+            <button id="cerrar-modal" type="button" class="btn btn-secondary">
+              Cerrar
+            </button>
+            <button id="grabar-cambios" type="button" class="btn btn-success">
+              Grabar Cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN Modal PRODUCTO -->
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"
+  ></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="js/menu.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="../compartido/tabla.js"></script>
+  <script src="../compartido/funcionesFecha.js"></script>
+  <script src="../compartido/funcionesVarias.js"></script>
+  <script src="../compartido/graficos1.js"></script>
+</html>

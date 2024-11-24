@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+h1 {
+  color: blue;
+}
+div {
+  color: rgb(173, 226, 176);
+}
+
+.bienvenido {
+  padding: 5px;
+  margin-top: 10px;
+  color: rgb(12, 107, 55);
+  size: 40px;
+  text-align: center;
+  font-size: 3vw;
+}
+
+.clicks {
+  padding: 10px;
+  color: rgb(8, 133, 64);
+  text-align: center;
+  font-size: 8vw;
+}
+
+.estadisticaDelDia {
+  padding: 10;
+  color: rgb(8, 133, 64);
+  text-align: center;
+  font-size: 2vw;
+}
+
+.aproximado {
+  padding: 10;
+  color: rgb(133, 8, 102);
+  text-align: center;
+  font-size: 2vw;
+}
+
+.subtitulos {
+  padding: 10px;
+  color: rgb(8, 133, 64);
+  text-align: center;
+  font-size: 3vw;
+}
+
+.entrada_x_provincia {
+  padding: 10px;
+  color: rgb(8, 133, 64);
+  text-align: center;
+  font-size: 3vw;
+}
+
+#logo-mag:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.table {
+  font-size: medium;
+}
+
+#grafico_entradaProvincia {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+#opcionesClicks {
+  margin: 0px auto;
+}
+
+.caja1 {
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+}
+
+.navbar {
+  background-color: rgb(102, 102, 102) !important;
+}
+
+.nav-link {
+  color: rgb(245, 214, 167);
+}
+
+.nav-link.active {
+  color: rgb(218 231 183) !important;
+}
+
+header .logo-mercado {
+  width: 193px;
+  height: 62px;
+}
+
+body {
+  background-color: #f4f2ed;
+  font-family: "Rubik", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.bg-cyan {
+  background-color: #3c9acd;
+}
+
+input {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.lista-resultados-busqueda {
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  max-height: 300px;
+  overflow: scroll;
+  padding: 12px;
+}
+
+.lista-resultados-busqueda ul {
+  list-style: none;
+}
+
+.item-lista-resultados-busqueda:hover {
+  background-color: rgb(78, 78, 78);
+  cursor: pointer;
+}
+
+#filtros {
+  background-color: rgb(184, 184, 184);
+}
+
+.fila-nro {
+  text-align: right;
+}
