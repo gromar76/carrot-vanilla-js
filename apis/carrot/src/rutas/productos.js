@@ -31,13 +31,24 @@ router.post("/", async (req, res) => {
   }
 });
 
+// visible es para saber si en la WEB lo tengo que visualizar o no al producto
 router.get("/busqueda/", async (req, res) => {
   const buscar = req.query.buscar;
   try {
-    let consulta = `select pro.id as id, pro.nombre as nombre, pro.precio, pro.costo
+    let consulta = `SELECT pro.id, pro.nombre, pro.costo, pro.precio, cat.id as id_categoria,
+                          cat.nombre as categoria, mar.nombre as marca, pro.visible as visible
+                          FROM productos pro
+                          INNER JOIN categorias_productos cat
+                          ON pro.id_categoria=cat.id
+                          LEFT JOIN marcas_productos mar
+                          ON pro.id_marca=mar.id
+                          WHERE (pro.nombre like '%${buscar}%') 
+                          ORDER by pro.nombre`;
+
+    /*     let consulta = `select pro.id as id, pro.nombre as nombre, pro.precio, pro.costo
                           FROM productos pro
                           WHERE (pro.nombre like '%${buscar}%')     
-                          ORDER BY pro.nombre`;
+                          ORDER BY pro.nombre`;*/
 
     const datos = await ejecutarConsultaEnCarrot(consulta);
     res.json(datos);
@@ -51,16 +62,60 @@ router.get("/busqueda/", async (req, res) => {
 router.get("/todos/", async (req, res) => {
   try {
     let consulta = `SELECT pro.id, pro.nombre, pro.costo, 
-                    pro.precio, cat.nombre as categoria, id_categoria, mar.nombre as marca
+                    pro.precio, cat.nombre as categoria, id_categoria, mar.nombre as marca, pro.visible as visible
                     FROM productos pro
                     INNER JOIN categorias_productos cat
                     ON pro.id_categoria=cat.id
                     LEFT JOIN marcas_productos mar
                     ON pro.id_marca=mar.id
-                    ORDER by pro.nombre
-                    LIMIT 10`;
+                    ORDER by pro.nombre`;
 
     //REFACTOR
+    const datos = await ejecutarConsultaEnCarrot(consulta);
+
+    res.json(datos);
+  } catch (error) {
+    res.status(500).json({ mensaje: error });
+  }
+});
+
+// visible es para saber si en la WEB lo tengo que visualizar o no al producto
+router.get("/destacados/", async (req, res) => {
+  try {
+    let consulta = `SELECT pro.id, pro.nombre, pro.costo, 
+                    pro.precio, cat.nombre as categoria, id_categoria, mar.nombre as marca, pro.visible as visible
+                    FROM productos pro
+                    INNER JOIN categorias_productos cat
+                    ON pro.id_categoria=cat.id
+                    LEFT JOIN marcas_productos mar
+                    ON pro.id_marca=mar.id
+                    WHERE destacado=1
+                    ORDER by pro.nombre`;
+
+    //REFACTOR
+    const datos = await ejecutarConsultaEnCarrot(consulta);
+
+    res.json(datos);
+  } catch (error) {
+    res.status(500).json({ mensaje: error });
+  }
+});
+
+// visible es para saber si en la WEB lo tengo que visualizar o no al producto
+router.get("/categoria/:categoria", async (req, res) => {
+  let codigo = req.params.categoria;
+
+  try {
+    let consulta = `SELECT pro.id, pro.nombre, pro.costo, pro.precio, cat.id as id_categoria,
+                    cat.nombre as categoria, mar.nombre as marca, pro.visible as visible
+                    FROM productos pro
+                    INNER JOIN categorias_productos cat
+                    ON pro.id_categoria=cat.id
+                    LEFT JOIN marcas_productos mar
+                    ON pro.id_marca=mar.id
+                    WHERE pro.id_categoria=${codigo}
+                    ORDER by pro.nombre`;
+
     const datos = await ejecutarConsultaEnCarrot(consulta);
 
     res.json(datos);
@@ -73,7 +128,8 @@ router.get("/:codigo", async (req, res) => {
   let codigo = req.params.codigo;
 
   try {
-    let consulta = `SELECT pro.id, pro.nombre, pro.costo, pro.precio, cat.id as id_categoria, mar.nombre as marca
+    let consulta = `SELECT pro.id, pro.nombre, pro.costo, pro.precio, cat.id as id_categoria,
+                    cat.nombre as categoria, mar.nombre as marca, pro.visible as visible
                     FROM productos pro
                     INNER JOIN categorias_productos cat
                     ON pro.id_categoria=cat.id

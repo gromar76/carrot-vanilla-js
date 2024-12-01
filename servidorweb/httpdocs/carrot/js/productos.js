@@ -30,14 +30,14 @@ let comenzarDesdePagina = 1;
 const nombrePantalla = "Productos";
 
 // columnas son las columnas a mostrar en la tabla por pantalla
-let columnas = [null, "Nombre", "Costo", "Precio", "Categoria"];
+let columnas = ["ID", "Nombre", "Costo", "Precio", "Categoria"];
 
 // campos en el formulario del modal
 let campos = ["id", "nombre", "costo", "precio", "categoria"];
 
 // aca le estoy enviando el campo id pero en columna como null para que no lo muestre...
 // tipoCampos le digo de que tipo es para luego saber como tratarlos
-let tiposCampos = [null, "text", "number", "number", "select"]; //Si es select, busco el id en la columna que se llame id_categoria (o el nombre que sea)
+let tiposCampos = ["number", "text", "number", "number", "select"]; //Si es select, busco el id en la columna que se llame id_categoria (o el nombre que sea)
 
 // las funciones que debe utilizar cuando hago click en esa celda
 let funcionesDetalle = [
