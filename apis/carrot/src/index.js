@@ -21,7 +21,7 @@ const app = express();
 
 app.use(morgan("dev"));
 
-app.use(express.static("./public"));
+app.use(express.static(__dirname + "/public"));
 
 app.use(cors());
 app.use(express.json()); //Habilito que lea el JSON que viene en el body

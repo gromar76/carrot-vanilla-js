@@ -42,7 +42,7 @@ router.get("/busqueda/", async (req, res) => {
                           ON pro.id_categoria=cat.id
                           LEFT JOIN marcas_productos mar
                           ON pro.id_marca=mar.id
-                          WHERE (pro.nombre like '%${buscar}%') 
+                          WHERE (pro.nombre like '%${buscar}%') and pro.visible=1
                           ORDER by pro.nombre`;
 
     /*     let consulta = `select pro.id as id, pro.nombre as nombre, pro.precio, pro.costo
@@ -68,6 +68,7 @@ router.get("/todos/", async (req, res) => {
                     ON pro.id_categoria=cat.id
                     LEFT JOIN marcas_productos mar
                     ON pro.id_marca=mar.id
+                    WHERE pro.visible=1
                     ORDER by pro.nombre`;
 
     //REFACTOR
@@ -89,7 +90,7 @@ router.get("/destacados/", async (req, res) => {
                     ON pro.id_categoria=cat.id
                     LEFT JOIN marcas_productos mar
                     ON pro.id_marca=mar.id
-                    WHERE destacado=1
+                    WHERE pro.destacado=1 and pro.visible=1
                     ORDER by pro.nombre`;
 
     //REFACTOR
@@ -113,7 +114,7 @@ router.get("/categoria/:categoria", async (req, res) => {
                     ON pro.id_categoria=cat.id
                     LEFT JOIN marcas_productos mar
                     ON pro.id_marca=mar.id
-                    WHERE pro.id_categoria=${codigo}
+                    WHERE pro.id_categoria=${codigo} and pro.visible=1
                     ORDER by pro.nombre`;
 
     const datos = await ejecutarConsultaEnCarrot(consulta);
@@ -135,7 +136,7 @@ router.get("/:codigo", async (req, res) => {
                     ON pro.id_categoria=cat.id
                     LEFT JOIN marcas_productos mar
                     ON pro.id_marca=mar.id
-                    WHERE pro.id=${codigo}
+                    WHERE pro.id=${codigo} and pro.visible=1
                     ORDER by pro.nombre`;
 
     const datos = await ejecutarConsultaEnCarrot(consulta);
