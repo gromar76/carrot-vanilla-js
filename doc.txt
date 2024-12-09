@@ -1,0 +1,11 @@
+para hacer el git debo hacerlo primero desde 
+
+/apis
+y luego desde
+ /servidorweb
+
+desde cada directorio hacer
+
+git add .
+git commit -m "djdjdjdjdj"
+git push

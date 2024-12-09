@@ -35,4 +35,21 @@ router.get("/todos/", async (req, res) => {
   }
 });
 
+router.get("/:idCategoria", async (req, res) => {
+  let idCategoria = req.params.idCategoria;
+  try {
+    let consulta = `SELECT *
+                    FROM categorias_productos
+                    WHERE id=${idCategoria}`;
+
+    const datos = await ejecutarConsultaEnCarrot(consulta);
+
+    //console.log(datos);
+
+    res.json(datos[0]);
+  } catch (error) {
+    res.status(500).json({ mensaje: error });
+  }
+});
+
 module.exports = router;
