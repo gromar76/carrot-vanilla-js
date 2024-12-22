@@ -36,7 +36,7 @@ router.get("/busqueda/", async (req, res) => {
   const buscar = req.query.buscar;
   try {
     let consulta = `SELECT pro.id, pro.nombre, pro.costo, pro.precio, cat.id as id_categoria,
-                          cat.nombre as categoria, mar.nombre as marca, pro.visible as visible
+                          cat.nombre as categoria, mar.nombre as marca, pro.visible as visible, mar.id idMarca
                           FROM productos pro
                           INNER JOIN categorias_productos cat
                           ON pro.id_categoria=cat.id
