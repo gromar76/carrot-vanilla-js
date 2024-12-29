@@ -128,6 +128,30 @@ router.get("/categoria/:categoria", async (req, res) => {
   }
 });
 
+// visible es para saber si en la WEB lo tengo que visualizar o no al producto
+router.get("/marcas/:marca", async (req, res) => {
+  let codigo = req.params.marca;
+
+  try {
+    let consulta = `SELECT pro.id, pro.nombre, pro.costo, pro.precio, cat.id as id_categoria,
+                    cat.nombre as categoria, 
+                    mar.id as idMarca, mar.nombre as marca, pro.visible as visible
+                    FROM productos pro
+                    INNER JOIN categorias_productos cat
+                    ON pro.id_categoria=cat.id
+                    LEFT JOIN marcas_productos mar
+                    ON pro.id_marca=mar.id
+                    WHERE pro.id_marca=${codigo} and pro.visible=1
+                    ORDER by pro.nombre`;
+
+    const datos = await ejecutarConsultaEnCarrot(consulta);
+
+    res.json(datos);
+  } catch (error) {
+    res.status(500).json({ mensaje: error });
+  }
+});
+
 router.get("/:codigo", async (req, res) => {
   let codigo = req.params.codigo;
 
