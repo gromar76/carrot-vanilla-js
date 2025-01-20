@@ -41,6 +41,8 @@ inputFechaHasta.value = FechaDiaHoy;
 
 // dado un json de datos armo una tabla y muestro los datos
 function armarTabla(datos) {
+  console.log("DATOS ", datos);
+
   //quiero saber cuantas cabezas es el total
   let totalCab = 0;
   for (let i = 0; i < datos.length; i++) {
@@ -81,9 +83,13 @@ function armarTabla(datos) {
   let gananciaTot = 0;
 
   for (let i = 0; i < datos.length; i++) {
+    let nomApe = datos[i].nombre;
+    datos[i].apellido ? (nomApe += `, ` + datos[i].apellido) : ``;
+
     dat += `<tr class="table-secondary">`;
     dat += `<td>` + datos[i].id + `</td>`;
-    dat += `<td>` + datos[i].nombre + `</td>`;
+    //dat += `<td>` + datos[i].nombre + `, ` + datos[i].apellido + `</td>`;
+    dat += `<td>` + nomApe;
     dat += `<td>` + datos[i].importe_total + `</td>`;
     dat += `<td>` + datos[i].costo_total + `</td>`;
     dat += `<td>` + datos[i].ganancia + `</td>`;
