@@ -38,4 +38,21 @@ router.get("/conProductos/", async (req, res) => {
   }
 });
 
+router.get("/:idMarca", async (req, res) => {
+  let idMarca = req.params.idMarca;
+  try {
+    let consulta = `SELECT *
+                    FROM marcas_productos mar
+                    WHERE id=${idMarca}`;
+
+    const datos = await ejecutarConsultaEnCarrot(consulta);
+
+    //console.log(datos);
+
+    res.json(datos[0]);
+  } catch (error) {
+    res.status(500).json({ mensaje: error });
+  }
+});
+
 module.exports = router;

@@ -123,7 +123,7 @@ router.get("/agrupado_cliente/:desde/:hasta/:idUsuario", async (req, res) => {
 
   let consulta = "";
   try {
-    consulta = `SELECT cli.id id, cli.nombre nombre, sum(det.cant*det.precio) importe_total, sum(det.cant*det.costo) as costo_total,
+    consulta = `SELECT cli.id id, cli.nombre nombre, cli.apellido apellido, sum(det.cant*det.precio) importe_total, sum(det.cant*det.costo) as costo_total,
                sum((det.cant*det.precio)-(det.cant*det.costo)) as ganancia
                 FROM ventas ven, clientes cli, detalle_ventas det
                 WHERE ven.cliente=cli.id

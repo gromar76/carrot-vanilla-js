@@ -42,13 +42,8 @@ router.get("/busqueda/", async (req, res) => {
                           ON pro.id_categoria=cat.id
                           LEFT JOIN marcas_productos mar
                           ON pro.id_marca=mar.id
-                          WHERE (pro.nombre like '%${buscar}%') and pro.visible=1
+                          WHERE (pro.nombre like '%${buscar}%')
                           ORDER by pro.nombre`;
-
-    /*     let consulta = `select pro.id as id, pro.nombre as nombre, pro.precio, pro.costo
-                          FROM productos pro
-                          WHERE (pro.nombre like '%${buscar}%')     
-                          ORDER BY pro.nombre`;*/
 
     const datos = await ejecutarConsultaEnCarrot(consulta);
     res.json(datos);
@@ -69,7 +64,6 @@ router.get("/todos/", async (req, res) => {
                     ON pro.id_categoria=cat.id
                     LEFT JOIN marcas_productos mar
                     ON pro.id_marca=mar.id
-                    WHERE pro.visible=1
                     ORDER by pro.nombre`;
 
     //REFACTOR
@@ -92,7 +86,7 @@ router.get("/destacados/", async (req, res) => {
                     ON pro.id_categoria=cat.id
                     LEFT JOIN marcas_productos mar
                     ON pro.id_marca=mar.id
-                    WHERE pro.destacado=1 and pro.visible=1
+                    WHERE pro.destacado=1
                     ORDER by pro.nombre`;
 
     //REFACTOR
