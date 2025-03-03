@@ -125,11 +125,13 @@ function restaleFecha(fecha) {
   // `getMonth()` devuelve el mes (de 0 a 11)
   let month = fecha6mesesAntes.getMonth() + 1;
   // `getFullYear()` devuelve el año completo
-  const year = fecha6mesesAntes.getFullYear();
+  let anio = fecha6mesesAntes.getFullYear();
 
   let meses = month;
+
   if (meses <= 6) {
     meses = 12 - meses;
+    anio = anio - 1;
   } else {
     meses = meses - 6;
   }
@@ -143,7 +145,7 @@ function restaleFecha(fecha) {
     dia = "0" + dia;
   }
 
-  fecha6mesesAntes = `${year}-${meses}-${dia}`;
+  fecha6mesesAntes = `${anio}-${meses}-${dia}`;
 
   return fecha6mesesAntes;
 }

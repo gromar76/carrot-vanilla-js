@@ -82,7 +82,7 @@ function menu(idElemento) {
             <li><a class="dropdown-item" href="ventas_x_articulo.html">Ventas por Articulo</a></li>
             <li><a class="dropdown-item" href="ventas_x_categoria.html">Ventas por Categoria (Agrupado)</a></li>
             <li><a class="dropdown-item" href="ventas_x_cliente.html">Ventas por Cliente</a></li>
-            <li><a class="dropdown-item" href="#">Clientes que no compran hace un tiempo</a></li>
+            <li><a class="dropdown-item" href="ultimaCompra.html">Ultima Compra de Clientes</a></li>
             <li><a class="dropdown-item" href="#">Ver el Stock por Deposito</a></li>
             <li><a class="dropdown-item" href="#">xxxxxxxxxxxxxxxxxxxxxxx</a></li>
             <li><a class="dropdown-item" href="#">xxxxxxxxxxxxxxxxxxxxxxx</a></li>

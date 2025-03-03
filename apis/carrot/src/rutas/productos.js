@@ -43,6 +43,7 @@ router.get("/busqueda/", async (req, res) => {
                           LEFT JOIN marcas_productos mar
                           ON pro.id_marca=mar.id
                           WHERE (pro.nombre like '%${buscar}%')
+                          OR cat.nombre like '%${buscar}%'
                           ORDER by pro.nombre`;
 
     const datos = await ejecutarConsultaEnCarrot(consulta);
@@ -151,7 +152,8 @@ router.get("/:codigo", async (req, res) => {
 
   try {
     let consulta = `SELECT pro.id, pro.nombre, pro.costo, pro.precio, cat.id as id_categoria,
-                    cat.nombre as categoria, mar.id as idMarca, mar.nombre as marca, pro.visible as visible
+                    cat.nombre as categoria, mar.id as idMarca, mar.nombre as marca, 
+                    pro.visible as visible, pro.descripcion as descripcion
                     FROM productos pro
                     INNER JOIN categorias_productos cat
                     ON pro.id_categoria=cat.id

@@ -170,4 +170,35 @@ router.get("/mes_x_mes/", async (req, res) => {
   }
 });
 
+router.get("/ultimaCompra/", async (req, res) => {
+  try {
+    /*  let consulta = `select cli.id as id, cli.nombre as nombre, cli.apellido as apellido, cli.whatsapp as whatsapp, sum(ve.importe),
+                    us.nombre as usuario, max(ve.fecha) as ultima, count(*) as ventas
+                    from ventas ve,clientes cli, usuarios us
+                    where
+                    ve.cliente=cli.id
+                    and ve.id_usuario=us.id
+                    group by cli.id, cli.nombre, cli.apellido, cli.whatsapp
+                    order by us.id, max(ve.fecha) desc
+                `;*/
+
+    let consulta = `select cli.id, cli.nombre as nombre, cli.apellido as apellido, pro.nombre as provincia, loc.nombre as localidad, 
+                cli.whatsapp as whatsapp, sum(ve.importe), us.nombre as usuario, max(ve.fecha) as ultima, count(*) as ventas
+                from ventas ve,clientes cli, usuarios us, localidades loc, provincias pro
+                where
+                cli.id_localidad = loc.id and loc.id_provincia = pro.id and ve.cliente=cli.id
+                and
+                ve.cliente=cli.id
+                and ve.id_usuario=us.id
+                group by cli.id, cli.nombre, cli.apellido, pro.nombre, loc.nombre, cli.whatsapp
+                order by us.nombre, max(ve.fecha) desc`;
+
+    const datos = await ejecutarConsultaEnCarrot(consulta);
+
+    res.json(datos);
+  } catch (error) {
+    res.status(500).json({ mensaje: error });
+  }
+});
+
 module.exports = router;
